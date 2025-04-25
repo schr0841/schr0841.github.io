@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digit Recognizer</title>
+
+    <link rel="stylesheet" href="classifier.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>MNIST Digit Recognizer</h1>
+    </header>
+
+    <main class="container classifier-container">
+        <section id="drawing-area">
+            <h2>Draw a digit (0-9) below:</h2>
+            <canvas id="digit-canvas" width="280" height="280"></canvas>
+            <div class="controls">
+                <button id="predict-button">Predict</button>
+                <button id="clear-button">Clear</button>
+            </div>
+        </section>
+
+        <section id="prediction-area">
+            <h2>Prediction:</h2>
+            <p id="prediction-output">Draw a digit and click Predict.</p>
+            <p id="status-message">Loading model...</p> </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Greg Schreiter. All rights reserved.</p>
+    </footer>
+
+    <script src="classifier.js"></script>
+</body>
+</html>
