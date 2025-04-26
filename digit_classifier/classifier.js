@@ -75,7 +75,7 @@ predictButton.addEventListener('click', predictDigit);
 async function loadModel() {
     statusMessage.textContent = 'Loading model (GraphModel)...';
     try {
-        model = await tf.loadGraphModel('model/model.json');
+        model = await tf.loadGraphModel('../digit_classifier/model/model.json');
         if (!model || !model.executor) {
             throw new Error("Model structure seems invalid after loading.");
         }
@@ -83,7 +83,7 @@ async function loadModel() {
         predictButton.disabled = false;
         console.log('GraphModel loaded successfully.');
     } catch (error) {
-        statusMessage.textContent = `Error loading model from 'model/model.json'. Check path and console.`;
+        statusMessage.textContent = `Error loading model from 'digit_classifier/model/model.json'. Check path and console.`;
         console.error('Error loading model:', error);
         predictButton.disabled = true;
     }
@@ -190,4 +190,4 @@ setupDrawingStyle(); // Call initially
 // ** Fill background white initially **
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 predictButton.disabled = true; // Disable button until model is loaded
-loadModel('digit_classifier/model/model.json');   // Start loading the model when the script runs
+loadModel();   // Start loading the model when the script runs
