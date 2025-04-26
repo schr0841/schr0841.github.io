@@ -32,16 +32,12 @@
     <section id="digit-classifier-section" class="container">
        <h2>MNIST Digit Recognizer Demo</h2>
        <p style="text-align: center;">Draw a single digit (0-9) in the box below and see if the model can recognize it! (Model trained on MNIST).</p> <div class="classifier-container">
-           <div id="drawing-area">
-               <h3 style="text-align: center;">Draw Here:</h3> <canvas id="digit-canvas" width="280" height="280"></canvas> <div class="controls">
-                   <button id="predict-button">Predict</button>
-                   <button id="clear-button">Clear</button>
-               </div>
+           <h3 style="text-align: center;">Draw Here:</h3>
+           <canvas id="digit-canvas" width="280" height="280"></canvas> <div class="controls">
+               <button id="predict-button">Predict</button>
+               <button id="clear-button">Clear</button>
            </div>
-
-           <div id="prediction-area">
-               <h3 style="text-align: center;">Prediction:</h3> <p id="prediction-output">Draw a digit and click Predict.</p> <p id="status-message">Loading model...</p> </div>
-       </div>
+           <h3 style="text-align: center; margin-top: 20px;">Prediction:</h3> <p id="prediction-output">Draw a digit and click Predict.</p> <p id="status-message">Loading model...</p> </div>
     </section>
     <section id="projects" class="container">
         <h2>Selected Projects</h2>
