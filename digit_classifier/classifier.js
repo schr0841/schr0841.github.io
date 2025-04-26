@@ -190,4 +190,4 @@ setupDrawingStyle(); // Call initially
 // ** Fill background white initially **
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 predictButton.disabled = true; // Disable button until model is loaded
-loadModel();   // Start loading the model when the script runs
+loadModel('digit_classifier/model/model.json');   // Start loading the model when the script runs
