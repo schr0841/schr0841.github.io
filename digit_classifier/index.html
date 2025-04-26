@@ -7,7 +7,7 @@
 
     <link rel="stylesheet" href="classifier.css">
 
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.21.0/dist/tf.min.js"></script>
 </head>
 <body>
     <header>
@@ -27,7 +27,13 @@
         <section id="prediction-area">
             <h2>Prediction:</h2>
             <p id="prediction-output">Draw a digit and click Predict.</p>
-            <p id="status-message">Loading model...</p> </section>
+            <p id="status-message">Loading model...</p>
+        
+            <div style="margin-top: 15px;">
+                <small>Debug: Preprocessed Input (28x28)</small><br>
+                <canvas id="debug-canvas" width="28" height="28" style="border: 1px solid grey; image-rendering: pixelated; width: 84px; height: 84px;"></canvas>
+            </div>
+            </section>
     </main>
 
     <footer>

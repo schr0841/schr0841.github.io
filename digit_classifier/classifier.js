@@ -7,7 +7,7 @@ const predictionOutput = document.getElementById('prediction-output');
 const statusMessage = document.getElementById('status-message');
 
 let isDrawing = false;
-let model; // Variable to hold the created TensorFlow.js model
+let model; // Variable to hold the loaded TensorFlow.js model (GraphModel)
 
 // Set drawing style
 ctx.lineWidth = 15; // Adjust thickness as needed
@@ -68,138 +68,120 @@ canvas.addEventListener('touchmove', draw);
 function clearCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     predictionOutput.textContent = 'Draw a digit and click Predict.';
-    if (model) { // Only update status if model has been created
-       statusMessage.textContent = 'Model structure defined (untrained). Ready to predict.';
+    if (model) { // Only update status if model has been loaded/attempted
+       statusMessage.textContent = 'Model ready.';
     } else {
-       statusMessage.textContent = 'Creating model structure...';
+       statusMessage.textContent = 'Loading model...';
     }
 }
 
 clearButton.addEventListener('click', clearCanvas);
 predictButton.addEventListener('click', predictDigit);
 
-// --- TensorFlow.js Model Creation ---
+// --- TensorFlow.js Model Loading and Prediction ---
 
-// Function to define the CNN model structure
-function createModel() {
-    statusMessage.textContent = 'Creating model structure...';
+// Function to load the model using loadGraphModel
+async function loadModel() {
+    statusMessage.textContent = 'Loading model (GraphModel)...'; // Updated message
     try {
-        // Define a sequential model
-        model = tf.sequential();
+        // Load model from the 'model' folder relative to the HTML page
+        model = await tf.loadGraphModel('model/model.json'); // Use loadGraphModel
 
-        // Input shape: 28x28 pixels, 1 color channel (grayscale)
-        const inputShape = [28, 28, 1];
+        // Check if model loaded (basic check for GraphModel)
+        if (!model || !model.executor) { // GraphModel has an 'executor' property
+            throw new Error("Model structure seems invalid after loading.");
+        }
 
-        // Convolutional Layer 1
-        // 32 filters, 3x3 kernel size, ReLU activation
-        model.add(tf.layers.conv2d({
-            inputShape: inputShape,
-            filters: 32,
-            kernelSize: 3,
-            activation: 'relu',
-        }));
-
-        // Max Pooling Layer 1
-        // 2x2 pool size
-        model.add(tf.layers.maxPooling2d({ poolSize: [2, 2] }));
-
-        // Convolutional Layer 2
-        // 64 filters, 3x3 kernel size, ReLU activation
-        model.add(tf.layers.conv2d({
-            filters: 64,
-            kernelSize: 3,
-            activation: 'relu',
-        }));
-
-        // Max Pooling Layer 2
-        model.add(tf.layers.maxPooling2d({ poolSize: [2, 2] }));
-
-        // Flatten Layer
-        // Flattens the output of the pooling layer to feed into dense layers
-        model.add(tf.layers.flatten());
-
-        // Dense Layer (Fully Connected)
-        // 128 units, ReLU activation
-        model.add(tf.layers.dense({ units: 128, activation: 'relu' }));
-
-        // Output Layer
-        // 10 units (for digits 0-9), Softmax activation for probability distribution
-        model.add(tf.layers.dense({ units: 10, activation: 'softmax' }));
-
-        // Compile the model - necessary even if not training here
-        // Optimizer and loss are needed for compilation but won't be used
-        // unless you train the model later.
-        model.compile({
-            optimizer: tf.train.adam(), // Example optimizer
-            loss: 'categoricalCrossentropy', // Example loss function
-            metrics: ['accuracy'], // Example metric
-        });
-
-        model.summary(); // Log model structure to the console (optional)
-
-        statusMessage.textContent = 'Model structure defined (untrained). Ready to predict!';
+        statusMessage.textContent = 'Model loaded successfully. Ready to predict!';
         predictButton.disabled = false; // Enable predict button
-        console.log('Model structure created successfully.');
+        console.log('GraphModel loaded successfully.');
 
     } catch (error) {
-        statusMessage.textContent = 'Error creating model structure. Check console.';
-        console.error('Error creating model:', error);
-        predictButton.disabled = true;
+        statusMessage.textContent = `Error loading model from 'model/model.json'. Check path and console.`;
+        console.error('Error loading model:', error); // Log the actual error object
+        predictButton.disabled = true; // Disable predict button if model fails
     }
 }
 
 // Function to preprocess the canvas image and predict
 async function predictDigit() {
     if (!model) {
-        statusMessage.textContent = 'Model structure not created yet.';
+        statusMessage.textContent = 'Model not loaded yet.';
         return;
     }
 
-    statusMessage.textContent = 'Processing and predicting (using untrained model)...';
+    statusMessage.textContent = 'Processing and predicting...';
     predictionOutput.textContent = '...';
 
     // Preprocess the canvas data using tf.tidy for memory management
+    // imageData is created inside tf.tidy in preprocessCanvas and should be disposed there
     const imageData = preprocessCanvas(canvas);
+    let predictionTensor; // Declare predictionTensor outside try block
 
-    // Make prediction
     try {
-        // Predict using the UNTRAINED model. Output will be based on initial random weights.
-        const predictionTensor = model.predict(imageData);
+        // Make prediction using predict or executeAsync
+        if (typeof model.predict === 'function') {
+             predictionTensor = model.predict(imageData);
+        } else if (typeof model.executeAsync === 'function') {
+             predictionTensor = await model.executeAsync(imageData);
+        } else {
+            throw new Error("Model does not have predict or executeAsync method.");
+        }
 
-        const probabilities = await predictionTensor.data();
-        const predictedClass = predictionTensor.argMax(1).dataSync()[0];
+        // Get the highest probability index (predicted class) asynchronously
+        const predictionResult = predictionTensor.argMax(1);
+        const predictedClassData = await predictionResult.data(); // Use async data()
+        const predictedClass = predictedClassData[0];
 
-        // The prediction will likely be random!
-        predictionOutput.textContent = `Predicted Digit (Untrained): ${predictedClass}`;
-        statusMessage.textContent = 'Prediction complete (untrained model).';
+        // Dispose the intermediate tensor from argMax
+        predictionResult.dispose();
 
-        // Dispose tensors
-        imageData.dispose(); // Disposed by tidy
-        predictionTensor.dispose();
+        predictionOutput.textContent = `Predicted Digit: ${predictedClass}`;
+        statusMessage.textContent = 'Prediction complete.';
 
     } catch (error) {
         statusMessage.textContent = 'Error during prediction. Check console.';
         predictionOutput.textContent = 'Prediction Failed';
         console.error('Prediction error:', error);
-        // Ensure imageData is disposed even if prediction fails
-        imageData.dispose(); // Handled by tidy, but safe to leave
+    } finally {
+        // ** Ensure tensors are disposed even if errors occur **
+        // imageData should be disposed by tf.tidy in preprocessCanvas, but explicit disposal is safe
+        if (imageData) {
+             imageData.dispose();
+             // console.log('imageData disposed'); // Uncomment for debugging
+        }
+        // Dispose predictionTensor if it exists
+        if (predictionTensor) {
+             predictionTensor.dispose();
+             // console.log('predictionTensor disposed'); // Uncomment for debugging
+        }
     }
 }
 
-// Function to preprocess the canvas image (No changes needed here)
+// Function to preprocess the canvas image
 function preprocessCanvas(canvasInput) {
+    // Use tf.tidy to automatically dispose intermediate tensors created ONLY within this function
     return tf.tidy(() => {
+        // 1. Get image data from canvas and convert to tensor (grayscale)
         let tensor = tf.browser.fromPixels(canvasInput, 1);
+
+        // 2. Resize the image to 28x28 pixels using bilinear interpolation
         const resized = tf.image.resizeBilinear(tensor, [28, 28]).toFloat();
+
+        // 3. Normalize the image (pixels 0-255 to 0-1). Invert colors.
         const normalized = resized.div(tf.scalar(255.0));
         const inverted = tf.scalar(1.0).sub(normalized);
-        const batched = inverted.expandDims(0);
-        return batched;
+
+        // 4. Reshape to the expected batch format [batch_size, height, width, channels]
+        const batched = inverted.expandDims(0); // [1, 28, 28, 1]
+
+        // console.log('Preprocessed tensor created'); // Uncomment for debugging
+        return batched; // tf.tidy will dispose intermediate tensors (tensor, resized, normalized, inverted)
+                        // but NOT the returned 'batched' tensor.
     });
 }
 
 // --- Initial Setup ---
-predictButton.disabled = true; // Disable button until model is created
+predictButton.disabled = true; // Disable button until model is loaded
 clearCanvas(); // Ensure canvas is clear initially
-createModel(); // Create the model structure when the script runs
-
+loadModel();   // Start loading the model when the script runs
