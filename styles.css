@@ -97,17 +97,19 @@ section h2 {
 
 /* Styles specific to the classifier section */
 .classifier-container {
-    display: flex;
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
-    gap: 30px;
-    justify-content: center;
-    align-items: flex-start; /* Align items to the top */
+    /* Removed flex properties */
+    /* display: flex; */
+    /* flex-wrap: wrap; */
+    /* gap: 30px; */
+    /* justify-content: center; */
+    /* align-items: flex-start; */
     margin-top: 20px;
     margin-bottom: 20px;
-    padding: 20px; /* Add some padding */
-    border: 1px solid #eee; /* Optional border for the whole section */
+    padding: 20px;
+    border: 1px solid #eee;
     border-radius: 8px;
-    background-color: #f9f9f9; /* Light background for the section */
+    background-color: #f9f9f9;
+    text-align: center; /* Center all text and inline/block elements within */
 }
 
 #drawing-area, #prediction-area {
@@ -118,23 +120,29 @@ section h2 {
 }
 
 #digit-canvas {
-    border: 2px solid black; /* <<< Black border restored */
+    border: 2px solid black;
     cursor: crosshair;
-    touch-action: none; /* Prevent scrolling on touch devices while drawing */
-    background-color: white; /* Ensure background is white */
-    display: block; /* Prevents extra space below canvas */
-    margin-left: auto; /* Center canvas within its area */
-    margin-right: auto;
+    touch-action: none;
+    background-color: white;
+    display: inline-block; /* Changed from block to allow text-align:center to work */
+    /* margin-left/right: auto are not needed with text-align: center on parent */
+    margin-top: 10px; /* Add some space above */
+    margin-bottom: 10px; /* Add some space below */
 }
 
 .controls {
     margin-top: 15px;
-    display: flex;
-    justify-content: center; /* Center buttons */
-    gap: 10px;
+    /* Centering handled by text-align: center on parent */
+    /* display: flex; */
+    /* justify-content: center; */
+    /* gap: 10px; */
 }
 
+/* Add gap between buttons if needed */
 .controls button {
+    margin-left: 5px;
+    margin-right: 5px;
+    /* Keep existing button styles */
     padding: 10px 15px;
     font-size: 1em;
     cursor: pointer;
@@ -161,16 +169,17 @@ section h2 {
     font-size: 1.5em;
     font-weight: bold;
     color: #333;
-    min-height: 1.5em; /* Prevent layout shift */
-    text-align: center; /* Center prediction text */
+    min-height: 1.5em;
+    /* Centering handled by text-align: center on parent */
 }
 
 #status-message {
     font-style: italic;
     color: #555;
     margin-top: 10px;
-    text-align: center; /* Center status text */
+    /* Centering handled by text-align: center on parent */
 }
+
 
 /* Responsive adjustments if needed */
 @media (max-width: 768px) {
