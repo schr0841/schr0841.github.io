@@ -109,7 +109,6 @@ section h2 {
     border: 1px solid #eee;
     border-radius: 8px;
     background-color: #f9f9f9;
-    text-align: center; /* Center all text and inline/block elements within */
 }
 
 #drawing-area, #prediction-area {
@@ -236,3 +235,106 @@ footer {
     background: #333;
     color: #fff;
 }
+
+/* === Add these rules to your main styles.css === */
+
+/* Container for the two-column layout */
+.two-column-layout {
+    display: flex; /* Enable Flexbox */
+    flex-wrap: wrap; /* Allow columns to wrap on smaller screens */
+    gap: 30px; /* Space between columns */
+    align-items: flex-start; /* Align items to the top */
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Style for individual columns */
+.column {
+    flex: 1; /* Allow columns to grow and shrink */
+    min-width: 300px; /* Minimum width before wrapping */
+    /* Add padding or borders if desired for columns */
+    /* padding: 15px; */
+    /* border: 1px solid #ddd; */
+    /* border-radius: 8px; */
+}
+
+/* Specific styling for the left column (classifier) */
+.column-left {
+    /* Add specific styles if needed */
+}
+
+/* Specific styling for the right column (medium links) */
+.column-right {
+    /* Add specific styles if needed */
+}
+
+/* Ensure the inner classifier container doesn't conflict */
+/* Remove text-align: center; if previously added */
+.classifier-container {
+    /* Keep existing styles like padding, border, background */
+    margin-top: 10px; /* Adjust top margin if needed */
+    padding: 20px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    /* text-align: center; */ /* REMOVE this if you added it for single column */
+}
+
+/* Center canvas within its container */
+#digit-canvas {
+    display: block; /* Use block for margin auto */
+    margin-left: auto;
+    margin-right: auto;
+     /* Keep existing border, cursor, etc. */
+    border: 2px solid black;
+    cursor: crosshair;
+    touch-action: none;
+    background-color: white;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* Center buttons within their container */
+.controls {
+    text-align: center; /* Center buttons */
+    margin-top: 15px;
+}
+
+.controls button {
+    margin-left: 5px;
+    margin-right: 5px;
+    /* Keep existing button styles */
+    padding: 10px 15px;
+    font-size: 1em;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    transition: background-color 0.2s ease;
+}
+
+/* Styles for Medium list (optional adjustments) */
+#medium-section ul {
+    list-style: disc; /* Or your preferred list style */
+    padding-left: 20px; /* Indent list items */
+}
+
+#medium-section li {
+    margin-bottom: 10px; /* Space between list items */
+}
+
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .two-column-layout {
+        flex-direction: column; /* Stack columns vertically */
+        align-items: center; /* Center stacked columns */
+    }
+    .column {
+        min-width: 90%; /* Allow columns to take more width when stacked */
+        flex-basis: auto; /* Reset flex basis */
+    }
+}
+
+/* === End of rules to add === */
