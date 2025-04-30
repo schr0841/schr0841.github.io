@@ -80,7 +80,7 @@ section h2 {
 
 /* Specific styling for the right column (about/medium/contact) */
 .column-right {
-    text-align: center; /* Center inline/block elements and text */
+    /* text-align: center; */ /* REMOVED: Reverted this change */
 }
 
 /* Styling for the inner container of the classifier */
@@ -90,7 +90,7 @@ section h2 {
     border: 1px solid #eee;
     border-radius: 8px;
     background-color: #f9f9f9;
-    text-align: center; /* Center content within this specific container too */
+    text-align: center; /* Keep content centered within classifier box */
 }
 
 /* Center canvas within its container */
@@ -169,13 +169,13 @@ section h2 {
 #about-section h3 {
     margin-top: 15px;
     margin-bottom: 10px;
-    text-align: center; /* Center sub-headings */
+    /* text-align: center; */ /* Sub-headings default to left */
 }
 #about-section ul {
     list-style: disc; /* Use bullets */
-    display: inline-block; /* Allow centering via text-align */
-    text-align: left; /* Align text within the list items left */
-    padding-left: 20px; /* Add padding for bullets */
+    /* display: inline-block; */ /* REMOVED: Reverted this */
+    /* text-align: left; */ /* REMOVED: Reverted this */
+    padding-left: 20px; /* Indent list items */
     margin-bottom: 10px; /* Space below list */
 }
 #about-section li {
@@ -187,8 +187,8 @@ hr.section-divider {
     border: 0;
     height: 1px;
     background-color: #ddd;
-    margin: 30px auto; /* Center divider and add space */
-    width: 80%; /* Make divider slightly narrower */
+    margin: 30px 0; /* Use 0 for auto centering */
+    width: 100%; /* Make divider full width of column */
 }
 
 /* Styles for Medium list within the right column */
@@ -201,9 +201,9 @@ hr.section-divider {
 }
 #medium-section ul {
     list-style: disc; /* Use bullets */
-    display: inline-block; /* Allow centering via text-align */
-    text-align: left; /* Align text within the list items left */
-    padding-left: 20px; /* Add padding for bullets */
+    /* display: inline-block; */ /* REMOVED: Reverted this */
+    /* text-align: left; */ /* REMOVED: Reverted this */
+    padding-left: 20px; /* Indent list items */
 }
 #medium-section li {
     margin-bottom: 10px; /* Space between list items */
@@ -223,7 +223,7 @@ hr.section-divider {
 }
 #contact-section-column p {
     margin-bottom: 10px; /* Space between links */
-    /* Centering inherited from .column-right */
+    /* text-align: center; */ /* REMOVED: Reverted this */
 }
 #contact-section-column a {
     color: #0077cc;
@@ -243,13 +243,10 @@ hr.section-divider {
     .column {
         min-width: 90%; /* Allow columns to take more width when stacked */
         flex-basis: auto; /* Reset flex basis */
-        text-align: center; /* Ensure centering on mobile */
+        /* text-align: center; */ /* REMOVED: Reverted this */
     }
-    /* Ensure lists are still centered correctly on mobile */
-    #about-section ul, #medium-section ul {
-        display: inline-block;
-        text-align: left;
-    }
+    /* Remove centering override for lists on mobile */
+    /* #about-section ul, #medium-section ul { ... } */
 }
 
 /* ================================================== */
