@@ -47,25 +47,14 @@ section {
     padding: 40px 0;
 }
 
+/* General section H2 - Keep centered */
 section h2 {
     margin-bottom: 20px;
     text-align: center;
 }
 
-/* About Section Specifics (if any needed) */
-#about ul {
-    list-style: disc;
-    padding-left: 40px; /* Indent list */
-    margin-top: 15px;
-}
-
-#about li {
-    margin-bottom: 10px;
-}
-
-
 /* ================================================== */
-/* == Two-Column Layout (Classifier + Medium) Styles == */
+/* == Two-Column Layout (Classifier + About/Medium/Contact) Styles == */
 /* ================================================== */
 
 /* Container for the two-column layout */
@@ -82,10 +71,6 @@ section h2 {
 .column {
     flex: 1; /* Allow columns to grow and shrink */
     min-width: 300px; /* Minimum width before wrapping */
-    /* Add padding or borders if desired for columns */
-    /* padding: 15px; */
-    /* border: 1px solid #ddd; */
-    /* border-radius: 8px; */
 }
 
 /* Specific styling for the left column (classifier) */
@@ -93,9 +78,9 @@ section h2 {
     /* Add specific styles if needed */
 }
 
-/* Specific styling for the right column (medium links) */
+/* Specific styling for the right column (about/medium/contact) */
 .column-right {
-    /* Add specific styles if needed */
+    text-align: center; /* Center inline/block elements and text */
 }
 
 /* Styling for the inner container of the classifier */
@@ -105,6 +90,7 @@ section h2 {
     border: 1px solid #eee;
     border-radius: 8px;
     background-color: #f9f9f9;
+    text-align: center; /* Center content within this specific container too */
 }
 
 /* Center canvas within its container */
@@ -172,27 +158,83 @@ section h2 {
     text-align: center; /* Center status text */
 }
 
-/* Styles for Medium list within the right column */
-#medium-section ul { /* Target the ID we added in the HTML */
-    list-style: disc;
-    padding-left: 20px; /* Indent list items */
-    margin-top: 10px; /* Add space below heading */
+/* Styles for the moved "About" section within the right column */
+#about-section {
+    margin-bottom: 20px; /* Add space below about section */
+}
+#about-section h2 {
+    text-align: center; /* Keep heading centered */
+    margin-bottom: 15px;
+}
+#about-section h3 {
+    margin-top: 15px;
+    margin-bottom: 10px;
+    text-align: center; /* Center sub-headings */
+}
+#about-section ul {
+    list-style: disc; /* Use bullets */
+    display: inline-block; /* Allow centering via text-align */
+    text-align: left; /* Align text within the list items left */
+    padding-left: 20px; /* Add padding for bullets */
+    margin-bottom: 10px; /* Space below list */
+}
+#about-section li {
+    margin-bottom: 8px; /* Space between list items */
 }
 
+/* Optional Divider between sections in right column */
+hr.section-divider {
+    border: 0;
+    height: 1px;
+    background-color: #ddd;
+    margin: 30px auto; /* Center divider and add space */
+    width: 80%; /* Make divider slightly narrower */
+}
+
+/* Styles for Medium list within the right column */
+#medium-section {
+     margin-bottom: 20px; /* Add space below medium section */
+}
+#medium-section h2 {
+     text-align: center; /* Keep heading centered */
+     margin-bottom: 15px;
+}
+#medium-section ul {
+    list-style: disc; /* Use bullets */
+    display: inline-block; /* Allow centering via text-align */
+    text-align: left; /* Align text within the list items left */
+    padding-left: 20px; /* Add padding for bullets */
+}
 #medium-section li {
     margin-bottom: 10px; /* Space between list items */
 }
-
-#medium-section a { /* Style links if needed */
+#medium-section a {
     color: #0077cc;
     text-decoration: none;
 }
-
 #medium-section a:hover {
     text-decoration: underline;
 }
 
-/* Correct Responsive adjustments for the two-column layout */
+/* Styles for Contact info within the right column */
+#contact-section-column h2 {
+    text-align: center; /* Keep heading centered */
+    margin-bottom: 15px;
+}
+#contact-section-column p {
+    margin-bottom: 10px; /* Space between links */
+    /* Centering inherited from .column-right */
+}
+#contact-section-column a {
+    color: #0077cc;
+    text-decoration: none;
+}
+#contact-section-column a:hover {
+    text-decoration: underline;
+}
+
+
+/* Responsive adjustments for the two-column layout */
 @media (max-width: 768px) {
     .two-column-layout {
         flex-direction: column; /* Stack columns vertically */
@@ -201,6 +243,12 @@ section h2 {
     .column {
         min-width: 90%; /* Allow columns to take more width when stacked */
         flex-basis: auto; /* Reset flex basis */
+        text-align: center; /* Ensure centering on mobile */
+    }
+    /* Ensure lists are still centered correctly on mobile */
+    #about-section ul, #medium-section ul {
+        display: inline-block;
+        text-align: left;
     }
 }
 
@@ -214,6 +262,7 @@ section h2 {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
+    text-align: left; /* Reset text-align for project cards */
 }
 
 .project {
@@ -250,23 +299,6 @@ section h2 {
 .project a:hover {
     background: #555;
 }
-
-
-/* Contact Section */
-#contact p {
-    margin-bottom: 10px;
-    text-align: center;
-}
-
-#contact a {
-    color: #0077cc;
-    text-decoration: none;
-}
-
-#contact a:hover {
-    text-decoration: underline;
-}
-
 
 /* Footer */
 footer {
