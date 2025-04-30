@@ -80,7 +80,7 @@ section h2 {
 
 /* Specific styling for the right column (about/medium/contact) */
 .column-right {
-    /* text-align: center; */ /* REMOVED: Reverted this change */
+    /* Default text alignment (left) */
 }
 
 /* Styling for the inner container of the classifier */
@@ -169,12 +169,10 @@ section h2 {
 #about-section h3 {
     margin-top: 15px;
     margin-bottom: 10px;
-    /* text-align: center; */ /* Sub-headings default to left */
+    /* Sub-headings default to left */
 }
 #about-section ul {
     list-style: disc; /* Use bullets */
-    /* display: inline-block; */ /* REMOVED: Reverted this */
-    /* text-align: left; */ /* REMOVED: Reverted this */
     padding-left: 20px; /* Indent list items */
     margin-bottom: 10px; /* Space below list */
 }
@@ -201,8 +199,6 @@ hr.section-divider {
 }
 #medium-section ul {
     list-style: disc; /* Use bullets */
-    /* display: inline-block; */ /* REMOVED: Reverted this */
-    /* text-align: left; */ /* REMOVED: Reverted this */
     padding-left: 20px; /* Indent list items */
 }
 #medium-section li {
@@ -223,7 +219,7 @@ hr.section-divider {
 }
 #contact-section-column p {
     margin-bottom: 10px; /* Space between links */
-    /* text-align: center; */ /* REMOVED: Reverted this */
+    text-align: center; /* <<< ADDED: Center contact links */
 }
 #contact-section-column a {
     color: #0077cc;
@@ -243,10 +239,11 @@ hr.section-divider {
     .column {
         min-width: 90%; /* Allow columns to take more width when stacked */
         flex-basis: auto; /* Reset flex basis */
-        /* text-align: center; */ /* REMOVED: Reverted this */
     }
-    /* Remove centering override for lists on mobile */
-    /* #about-section ul, #medium-section ul { ... } */
+    /* Ensure contact info is centered on mobile too */
+    #contact-section-column p {
+        text-align: center;
+    }
 }
 
 /* ================================================== */
