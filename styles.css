@@ -42,7 +42,7 @@ header p {
     font-size: 1.2em;
 }
 
-/* Sections */
+/* General Sections */
 section {
     padding: 40px 0;
 }
@@ -52,7 +52,164 @@ section h2 {
     text-align: center;
 }
 
-/* Projects */
+/* About Section Specifics (if any needed) */
+#about ul {
+    list-style: disc;
+    padding-left: 40px; /* Indent list */
+    margin-top: 15px;
+}
+
+#about li {
+    margin-bottom: 10px;
+}
+
+
+/* ================================================== */
+/* == Two-Column Layout (Classifier + Medium) Styles == */
+/* ================================================== */
+
+/* Container for the two-column layout */
+.two-column-layout {
+    display: flex; /* Enable Flexbox */
+    flex-wrap: wrap; /* Allow columns to wrap on smaller screens */
+    gap: 30px; /* Space between columns */
+    align-items: flex-start; /* Align items to the top */
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Style for individual columns */
+.column {
+    flex: 1; /* Allow columns to grow and shrink */
+    min-width: 300px; /* Minimum width before wrapping */
+    /* Add padding or borders if desired for columns */
+    /* padding: 15px; */
+    /* border: 1px solid #ddd; */
+    /* border-radius: 8px; */
+}
+
+/* Specific styling for the left column (classifier) */
+.column-left {
+    /* Add specific styles if needed */
+}
+
+/* Specific styling for the right column (medium links) */
+.column-right {
+    /* Add specific styles if needed */
+}
+
+/* Styling for the inner container of the classifier */
+.classifier-container {
+    margin-top: 10px; /* Adjust top margin if needed */
+    padding: 20px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+/* Center canvas within its container */
+#digit-canvas {
+    display: block; /* Use block for margin auto */
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid black; /* Black border */
+    cursor: crosshair;
+    touch-action: none;
+    background-color: white;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* Center buttons within their container */
+.controls {
+    text-align: center; /* Center buttons */
+    margin-top: 15px;
+}
+
+/* Style for buttons */
+.controls button {
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 10px 15px;
+    font-size: 1em;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    transition: background-color 0.2s ease;
+}
+
+/* Hover effect for general buttons */
+.controls button:hover {
+    background-color: #0056b3;
+}
+
+/* Specific style for clear button */
+#clear-button {
+    background-color: #6c757d;
+}
+
+/* Hover effect for clear button */
+#clear-button:hover {
+    background-color: #5a6268;
+}
+
+/* Style for prediction output text */
+#prediction-output {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333;
+    min-height: 1.5em;
+    text-align: center; /* Center prediction text */
+}
+
+/* Style for status message text */
+#status-message {
+    font-style: italic;
+    color: #555;
+    margin-top: 10px;
+    text-align: center; /* Center status text */
+}
+
+/* Styles for Medium list within the right column */
+#medium-section ul { /* Target the ID we added in the HTML */
+    list-style: disc;
+    padding-left: 20px; /* Indent list items */
+    margin-top: 10px; /* Add space below heading */
+}
+
+#medium-section li {
+    margin-bottom: 10px; /* Space between list items */
+}
+
+#medium-section a { /* Style links if needed */
+    color: #0077cc;
+    text-decoration: none;
+}
+
+#medium-section a:hover {
+    text-decoration: underline;
+}
+
+/* Correct Responsive adjustments for the two-column layout */
+@media (max-width: 768px) {
+    .two-column-layout {
+        flex-direction: column; /* Stack columns vertically */
+        align-items: center; /* Center stacked columns */
+    }
+    .column {
+        min-width: 90%; /* Allow columns to take more width when stacked */
+        flex-basis: auto; /* Reset flex basis */
+    }
+}
+
+/* ================================================== */
+/* =============== END OF TWO-COLUMN SECTION ======== */
+/* ================================================== */
+
+
+/* Projects Section */
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -95,124 +252,7 @@ section h2 {
 }
 
 
-/* Styles specific to the classifier section */
-.classifier-container {
-    /* Removed flex properties */
-    /* display: flex; */
-    /* flex-wrap: wrap; */
-    /* gap: 30px; */
-    /* justify-content: center; */
-    /* align-items: flex-start; */
-    margin-top: 20px;
-    margin-bottom: 20px;
-    padding: 20px;
-    border: 1px solid #eee;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    text-align: center; /* Center all text and inline/block elements within */
-}
-
-#drawing-area, #prediction-area {
-    /* Removed individual borders/backgrounds as the container has them */
-    padding: 15px;
-    min-width: 300px; /* Adjust as needed */
-    flex: 1; /* Allow sections to grow */
-}
-
-#digit-canvas {
-    border: 2px solid black;
-    cursor: crosshair;
-    touch-action: none;
-    background-color: white;
-    display: inline-block; /* Changed from block to allow text-align:center to work */
-    /* margin-left/right: auto are not needed with text-align: center on parent */
-    margin-top: 10px; /* Add some space above */
-    margin-bottom: 10px; /* Add some space below */
-}
-
-.controls {
-    margin-top: 15px;
-    /* Centering handled by text-align: center on parent */
-    /* display: flex; */
-    /* justify-content: center; */
-    /* gap: 10px; */
-}
-
-/* Add gap between buttons if needed */
-.controls button {
-    margin-left: 5px;
-    margin-right: 5px;
-    /* Keep existing button styles */
-    padding: 10px 15px;
-    font-size: 1em;
-    cursor: pointer;
-    border: none;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: white;
-    transition: background-color 0.2s ease;
-}
-
-.controls button:hover {
-    background-color: #0056b3;
-}
-
-#clear-button {
-    background-color: #6c757d;
-}
-
-#clear-button:hover {
-    background-color: #5a6268;
-}
-
-#prediction-output {
-    font-size: 1.5em;
-    font-weight: bold;
-    color: #333;
-    min-height: 1.5em;
-    /* Centering handled by text-align: center on parent */
-}
-
-#status-message {
-    font-style: italic;
-    color: #555;
-    margin-top: 10px;
-    /* Centering handled by text-align: center on parent */
-}
-
-
-/* Responsive adjustments if needed */
-@media (max-width: 768px) {
-    .classifier-container {
-        flex-direction: column;
-        align-items: center;
-    }
-    #drawing-area, #prediction-area {
-        min-width: 90%;
-    }
-}
-
-/* Medium Articles */
-#medium ul {
-    list-style: none;
-    padding: 0;
-}
-
-#medium li {
-    margin-bottom: 10px;
-    text-align: center;
-}
-
-#medium a {
-    color: #0077cc;
-    text-decoration: none;
-}
-
-#medium a:hover {
-    text-decoration: underline;
-}
-
-/* Contact */
+/* Contact Section */
 #contact p {
     margin-bottom: 10px;
     text-align: center;
@@ -228,11 +268,11 @@ section h2 {
 }
 
 
-
 /* Footer */
 footer {
     text-align: center;
     padding: 20px;
+    margin-top: 40px; /* Add space above footer */
     background: #333;
     color: #fff;
 }
