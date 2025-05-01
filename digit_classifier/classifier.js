@@ -153,11 +153,6 @@ function preprocessCanvas(canvasInput) {
         // 2. Create tensor from the ImageData.data (Uint8ClampedArray)
         let rawTensorRGBA = tf.tensor(imgData.data, [canvasInput.height, canvasInput.width, 4], 'int32');
 
-        // Removed raw value logging
-        // const minVal = rawTensorRGBA.slice([0, 0, 0], [canvasInput.height, canvasInput.width, 1]).min().dataSync()[0];
-        // const maxVal = rawTensorRGBA.slice([0, 0, 0], [canvasInput.height, canvasInput.width, 1]).max().dataSync()[0];
-        // console.log(`Raw tensor min value (R channel): ${minVal}, max value (R channel): ${maxVal}`);
-
         // 3. Slice off the alpha channel and convert to float
         let rawTensorRGB = rawTensorRGBA.slice([0, 0, 0], [canvasInput.height, canvasInput.width, 3]).toFloat();
 
