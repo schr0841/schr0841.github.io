@@ -219,7 +219,6 @@ hr.section-divider {
 }
 #contact-section-column p {
     margin-bottom: 10px; /* Space between links */
-    text-align: center; /* <<< ADDED: Center contact links */
 }
 #contact-section-column a {
     color: #0077cc;
