@@ -5,30 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Greg Schreiter - Portfolio</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     </head>
-    <body>
-        <header>
-            <div class="container header-container">
-                <div class="profile-info">
-                    <img src="images/newpic2021cropped.jpg" alt="Lionel Hutz is my favorite simpsons character" class="profile-pic">
-                    <h1>Greg Schreiter</h1>
-                    <p>Python Developer</p>
-                    <p>Machine Learning & Data Science</p>
-                </div>
-                <div class="header-contact">
-                    <ul>
-                        <li><a href="mailto:schreitergregory@gmail.com">schreitergregory@gmail.com</a></li>
-                        <li><a href="https://www.linkedin.com/in/gregory-schreiter/" target="_blank">linkedin.com/in/gregory-schreiter</a></li>
-                        <li><a href="https://github.com/schr0841" target="_blank">github.com/schr0841</a></li>
-                    </ul>
+<body>
+    <header>
+        <div class="container">
+            <div class="profile-info">
+                <img src="images/newpic2021cropped.jpg" alt="Lionel Hutz is my favorite simpsons character" class="profile-pic">
+                <h1>Greg Schreiter</h1>
+                <p>Python Developer</p>
+                <p>Machine Learning & Data Science</p>
+                 <div class="header-icons">
+                    <a href="mailto:schreitergregory@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://www.linkedin.com/in/gregory-schreiter/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/schr0841" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
                 </div>
             </div>
-        </header>
+            </div>
+    </header>
 
     <section id="interactive-section" class="container">
         <div class="two-column-layout">
             <div class="column column-left">
-                <div id="digit-classifier-section">
+                 <div id="about-section">
+                    <h2>My Work in AI/ML/DS</h2>
+                    <p>I'm a Python programmer passionate about ensuring the quality and reliability of AI systems.  At <a href="https://dataannotation.tech/" target="_blank" rel="noopener">dataannotation.tech</a>,
+                        I evaluate and refine cutting-edge AI models across a diverse range of projects. My work focuses on critically assessing AI-generated outputs, including code, algorithms, games, simulations,
+                        and general chatbot interactions, to ensure they meet the highest standards of correctness, groundedness and performance. When the tasks are more open-ended, I try to focus mostly on general ML/DL/AI topics.</p>
+                    <br> <h3>Key Contributions</h3>
+                    <ul>
+                        <li><b>Code Analysis & Generation:</b>  Reviewing, analyzing, testing, and correcting Python code. I also work on projects involving R, Matlab, Julia, HTML/CSS/JS/React, and a bit of Java and SQL.</li>
+                        <li><b>Simulator & Game Verification:</b>  Evaluating the accuracy and performance of AI-generated games and physics simulations.</li>
+                        <li><b>Chatbot Enhancement:</b> Assessing and improving chatbot capabilities in tasks like information extraction, email generation, and text summarization.</li>
+                    </ul>
+                 </div>
+                 <hr class="section-divider"> <div id="digit-classifier-section">
                    <h2 style="text-align: center;">MNIST Digit Recognizer Demo</h2>
                    <p style="text-align: center;">Draw a single digit (0-9) in the box below and see if the model can recognize it! (Model trained on MNIST).</p>
                    <div class="classifier-container">
@@ -43,25 +54,13 @@
                        <p id="status-message">Loading model...</p>
                    </div>
                 </div>
-            </div>
+                 </div>
 
             <div class="column column-right">
-                 <div id="about-section">
-                    <h2>My Work in AI/ML/DS</h2>
-                    <p>I'm a Python programmer passionate about ensuring the quality and reliability of AI systems.  At <a href="https://dataannotation.tech/" target="_blank" rel="noopener">dataannotation.tech</a>,
-                        I evaluate and refine cutting-edge AI models across a diverse range of projects. My work focuses on critically assessing AI-generated outputs, including code, algorithms, games, simulations,
-                        and general chatbot interactions, to ensure they meet the highest standards of correctness, groundedness and performance. When the tasks are more open-ended, I try to focus mostly on general ML topics.</p>
-                    <br> <h3>Key Contributions</h3>
-                    <ul>
-                        <li><b>Code Analysis & Generation:</b>  Reviewing, analyzing, testing, and correcting Python code. I also work on projects involving R, Matlab, Julia, HTML/CSS/JS/React, and a bit of Java and SQL.</li>
-                        <li><b>Simulator & Game Verification:</b>  Evaluating the accuracy and performance of AI-generated games and physics simulations.</li>
-                        <li><b>Chatbot Enhancement:</b> Assessing and improving chatbot capabilities in tasks like information extraction, email generation, and text summarization.</li>
-                    </ul>
-                 </div>
-                 <hr class="section-divider"> <div id="medium-section">
+                 <div id="medium-section">
                     <h2>Medium Articles</h2>
                     <ul>
-                        <li><a href="https://medium.com/@schreitergregory/setting-up-tensorflow-cuda-and-cudnn-to-work-with-local-gpu-on-windows-2025-106010780e9b" target="_blank">Setting up TensorFlow, CUDA, and CUDNN to work with local GPU on Windows (Jan 2025)</a></li>
+                        <li><a href="https://medium.com/@schreitergregory/setting-up-tensorflow-cuda-and-cudnn-to-work-with-local-gpu-on-windows-2025-106010780e9b" target="_blank">Setting up TensorFlow, CUDA, and CUDNN to work with local GPU on Windows (2025)</a></li>
                         <li><a href="https://medium.com/@schreitergregory/building-an-in-browser-digit-recognizer-with-tensorflow-js-e721b5a9eb3e" target="_blank">Building an In-Browser Digit Recognizer with TensorFlow.js (May 2025)</a></li>
                         <li><a href="[Your Medium Article 3 Link]" target="_blank">Article Title 3</a></li>
                     </ul>
@@ -70,10 +69,10 @@
                     <h3>Linear Regression Fit via Gradient Descent</h3>
                     <img src="gradient_descent_line.gif" alt="Gradient Descent Animation" class="gd-animation-gif">
                  </div>
-                 
-                 </div>
+            </div>
         </div>
     </section>
+
     <section id="projects" class="container">
         <h2>Selected Projects</h2>
         <div class="projects-grid">
@@ -87,9 +86,9 @@
             <div class="project">
                 <img src="images/project2.png" alt="Project 2 Screenshot">
                 <h3>Hands-on Machine Learning (3e) Code Replication</h3>
-                <p>I completed reconstructing the notebooks for the main text of the book <i>Hands-on Machine Learning (3e)</i> by Aurélien Géron in April 2025. 
-                    This book provides a comprehensive overview of modern machine learning methods using Python, with a special focus on 
-                    convolutional and recurrent neural network architectures, as well as general deep and machine learning best practices. 
+                <p>I completed reconstructing the notebooks for the main text of the book <i>Hands-on Machine Learning (3e)</i> by Aurélien Géron in April 2025.
+                    This book provides a comprehensive overview of modern machine learning methods using Python, with a special focus on
+                    convolutional and recurrent neural network architectures, as well as general deep and machine learning best practices.
                 </p>
                 <a href="https://github.com/schr0841/HOML3e" target="_blank">GitHub Repo</a>
             </div>
