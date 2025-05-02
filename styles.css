@@ -175,6 +175,7 @@ section h2 {
     list-style: disc; /* Use bullets */
     padding-left: 20px; /* Indent list items */
     margin-bottom: 10px; /* Space below list */
+    text-align: left; /* Ensure text within list is left-aligned */
 }
 #about-section li {
     margin-bottom: 8px; /* Space between list items */
@@ -200,6 +201,7 @@ hr.section-divider {
 #medium-section ul {
     list-style: disc; /* Use bullets */
     padding-left: 20px; /* Indent list items */
+    text-align: left; /* Ensure text within list is left-aligned */
 }
 #medium-section li {
     margin-bottom: 10px; /* Space between list items */
@@ -217,8 +219,15 @@ hr.section-divider {
     text-align: center; /* Keep heading centered */
     margin-bottom: 15px;
 }
-#contact-section-column p {
-    margin-bottom: 10px; /* Space between links */
+/* Style the contact list */
+#contact-section-column ul {
+    list-style: disc; /* Add bullet points */
+    padding-left: 20px; /* Add indentation for bullets */
+    margin: 0; /* Remove default margin if any */
+    text-align: left; /* <<< Ensure list items are left-aligned */
+}
+#contact-section-column li {
+    margin-bottom: 10px; /* Space between list items */
 }
 #contact-section-column a {
     color: #0077cc;
@@ -239,10 +248,26 @@ hr.section-divider {
         min-width: 90%; /* Allow columns to take more width when stacked */
         flex-basis: auto; /* Reset flex basis */
     }
-    /* Ensure contact info is centered on mobile too */
-    #contact-section-column p {
+    /* Ensure lists remain left-aligned within their centered column on mobile */
+     .column-right {
+        /* text-align: center; */ /* Remove this to prevent centering list blocks */
+    }
+    /* Ensure lists themselves are not centered as blocks */
+     #about-section ul, #medium-section ul, #contact-section-column ul {
+        /* display: inline-block; */ /* Remove this to prevent centering */
+        text-align: left; /* Keep text left-aligned */
+         /* Add margin auto if needed to center the block itself, but keep text left */
+         /* margin-left: auto; */
+         /* margin-right: auto; */
+         /* Adjust width if needed */
+         /* width: fit-content; */
+    }
+     /* Center contact heading specifically if needed */
+    #contact-section-column h2 {
         text-align: center;
     }
+
+
 }
 
 /* ================================================== */
