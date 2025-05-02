@@ -24,22 +24,16 @@ header {
     background: #333;
     color: #fff;
     padding: 20px 0;
-    /* text-align: center; */ /* Alignment handled by flexbox now */
+    text-align: center; /* Revert to centering header content */
 }
 
-/* NEW: Flex container for header content */
-.header-container {
-    display: flex;
-    justify-content: space-around; /* Space out items */
-    align-items: center; /* Vertically align items */
-    flex-wrap: wrap; /* Allow wrapping on small screens */
-    gap: 20px; /* Add gap between items when they wrap */
-}
+/* REMOVED Flex container for header content */
+/* .header-container { ... } */
 
 /* Container for profile info */
 .profile-info {
-    text-align: center; /* Center text within this block */
-    flex-shrink: 0; /* Prevent shrinking too much */
+    /* text-align: center; */ /* Inherited from header */
+    /* flex-shrink: 0; */ /* Not needed without flex */
 }
 
 .profile-pic {
@@ -55,36 +49,31 @@ header {
 
 .profile-info p {
     font-size: 1.2em;
+    margin-bottom: 5px; /* Add slight space below titles */
 }
 
-/* NEW: Container for header contact info */
-.header-contact {
-    text-align: right; /* Align contact info text right */
+/* NEW: Styles for header icons */
+.header-icons {
+    margin-top: 15px; /* Space above icons */
 }
 
-.header-contact ul {
-    list-style: none; /* Remove default bullets */
-    padding: 0;
-    margin: 0;
-}
-
-.header-contact li {
-    margin-bottom: 8px; /* Space between contact links */
-}
-.header-contact li:last-child {
-    margin-bottom: 0; /* No margin on last item */
-}
-
-.header-contact a {
-    color: #eee; /* Lighter color for header links */
+.header-icons a {
+    color: #eee; /* Icon color */
+    font-size: 1.8em; /* Icon size */
+    margin: 0 10px; /* Space between icons */
     text-decoration: none;
-    font-size: 0.95em; /* Slightly smaller font */
+    transition: color 0.3s ease;
 }
 
-.header-contact a:hover {
-    text-decoration: underline;
-    color: #fff; /* Brighten on hover */
+.header-icons a:hover {
+    color: #fff; /* Icon color on hover */
 }
+
+/* REMOVED Container for header contact info */
+/* .header-contact { ... } */
+/* .header-contact ul { ... } */
+/* .header-contact li { ... } */
+/* .header-contact a { ... } */
 
 
 /* General Sections */
@@ -123,7 +112,7 @@ section h2 {
     /* Add specific styles if needed */
 }
 
-/* Specific styling for the right column (about/medium) */
+/* Specific styling for the right column (about/medium/animation) */
 .column-right {
     /* Default text alignment (left) */
 }
@@ -259,7 +248,7 @@ hr.section-divider {
     text-decoration: underline;
 }
 
-/* Styles for GD Animation Section (If Added) */
+/* Styles for GD Animation Section */
 #gd-animation-section {
     text-align: center; /* Center heading and image block */
     margin-bottom: 20px; /* Add space below animation section */
@@ -285,15 +274,12 @@ hr.section-divider {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    /* Stack header items */
+    /* Keep header content centered when stacked */
     .header-container {
-        flex-direction: column;
+        /* flex-direction: column; */ /* Not using flex */
         text-align: center; /* Center items when stacked */
     }
-    .header-contact {
-        text-align: center; /* Center contact links when stacked */
-        margin-top: 15px; /* Add space above contact info when stacked */
-    }
+    /* .header-contact { ... } */ /* Removed */
 
     /* Stack two-column layout */
     .two-column-layout {
