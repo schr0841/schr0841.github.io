@@ -24,7 +24,22 @@ header {
     background: #333;
     color: #fff;
     padding: 20px 0;
-    text-align: center;
+    /* text-align: center; */ /* Alignment handled by flexbox now */
+}
+
+/* NEW: Flex container for header content */
+.header-container {
+    display: flex;
+    justify-content: space-around; /* Space out items */
+    align-items: center; /* Vertically align items */
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+    gap: 20px; /* Add gap between items when they wrap */
+}
+
+/* Container for profile info */
+.profile-info {
+    text-align: center; /* Center text within this block */
+    flex-shrink: 0; /* Prevent shrinking too much */
 }
 
 .profile-pic {
@@ -34,13 +49,43 @@ header {
     margin-bottom: 10px;
 }
 
-header h1 {
+.profile-info h1 {
     margin: 10px 0;
 }
 
-header p {
+.profile-info p {
     font-size: 1.2em;
 }
+
+/* NEW: Container for header contact info */
+.header-contact {
+    text-align: right; /* Align contact info text right */
+}
+
+.header-contact ul {
+    list-style: none; /* Remove default bullets */
+    padding: 0;
+    margin: 0;
+}
+
+.header-contact li {
+    margin-bottom: 8px; /* Space between contact links */
+}
+.header-contact li:last-child {
+    margin-bottom: 0; /* No margin on last item */
+}
+
+.header-contact a {
+    color: #eee; /* Lighter color for header links */
+    text-decoration: none;
+    font-size: 0.95em; /* Slightly smaller font */
+}
+
+.header-contact a:hover {
+    text-decoration: underline;
+    color: #fff; /* Brighten on hover */
+}
+
 
 /* General Sections */
 section {
@@ -54,7 +99,7 @@ section h2 {
 }
 
 /* ================================================== */
-/* == Two-Column Layout (Classifier + Right Content) Styles == */
+/* == Two-Column Layout (Classifier + About/Medium) Styles == */
 /* ================================================== */
 
 /* Container for the two-column layout */
@@ -78,7 +123,7 @@ section h2 {
     /* Add specific styles if needed */
 }
 
-/* Specific styling for the right column (about/medium/contact/animation) */
+/* Specific styling for the right column (about/medium) */
 .column-right {
     /* Default text alignment (left) */
 }
@@ -214,7 +259,7 @@ hr.section-divider {
     text-decoration: underline;
 }
 
-/* Styles for GD Animation Section */
+/* Styles for GD Animation Section (If Added) */
 #gd-animation-section {
     text-align: center; /* Center heading and image block */
     margin-bottom: 20px; /* Add space below animation section */
@@ -231,35 +276,26 @@ hr.section-divider {
 }
 
 
-/* Styles for Contact info within the right column */
-#contact-section-column {
-     margin-top: 20px; /* Add space above contact section if needed */
-}
-#contact-section-column h2 {
-    text-align: center; /* Keep heading centered */
-    margin-bottom: 15px;
-}
-/* Style the contact list */
-#contact-section-column ul {
-    list-style: disc; /* Add bullet points */
-    padding-left: 20px; /* Add indentation for bullets */
-    margin: 0; /* Remove default margin if any */
-    text-align: left; /* Ensure list items are left-aligned */
-}
-#contact-section-column li {
-    margin-bottom: 10px; /* Space between list items */
-}
-#contact-section-column a {
-    color: #0077cc;
-    text-decoration: none;
-}
-#contact-section-column a:hover {
-    text-decoration: underline;
-}
+/* REMOVED Styles for Contact info within the right column */
+/* #contact-section-column h2 { ... } */
+/* #contact-section-column ul { ... } */
+/* #contact-section-column li { ... } */
+/* #contact-section-column a { ... } */
 
 
-/* Responsive adjustments for the two-column layout */
+/* Responsive adjustments */
 @media (max-width: 768px) {
+    /* Stack header items */
+    .header-container {
+        flex-direction: column;
+        text-align: center; /* Center items when stacked */
+    }
+    .header-contact {
+        text-align: center; /* Center contact links when stacked */
+        margin-top: 15px; /* Add space above contact info when stacked */
+    }
+
+    /* Stack two-column layout */
     .two-column-layout {
         flex-direction: column; /* Stack columns vertically */
         align-items: center; /* Center stacked columns */
@@ -273,12 +309,12 @@ hr.section-divider {
         /* text-align: center; */ /* Allow text alignment to be handled by inner elements */
     }
     /* Ensure lists themselves are not centered as blocks */
-     #about-section ul, #medium-section ul, #contact-section-column ul {
+     #about-section ul, #medium-section ul {
         /* display: inline-block; */ /* Remove this to prevent centering */
         text-align: left; /* Keep text left-aligned */
     }
      /* Center headings specifically if needed */
-    #contact-section-column h2, #gd-animation-section h3 {
+    #gd-animation-section h3 {
         text-align: center;
     }
     /* Center animation GIF block on mobile */
