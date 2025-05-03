@@ -88,7 +88,7 @@ section h2 {
 }
 
 /* ================================================== */
-/* == Two-Column Layout (Classifier + About/Medium) Styles == */
+/* == Two-Column Layout (Classifier + Animation) Styles == */
 /* ================================================== */
 
 /* Container for the two-column layout */
@@ -112,7 +112,7 @@ section h2 {
     /* Add specific styles if needed */
 }
 
-/* Specific styling for the right column (about/medium/animation) */
+/* Specific styling for the right column (animation) */
 .column-right {
     /* Default text alignment (left) */
 }
@@ -192,9 +192,9 @@ section h2 {
     text-align: center; /* Center status text */
 }
 
-/* Styles for the "About" section within the right column */
+/* Styles for the "About" section (now full width) */
 #about-section {
-    margin-bottom: 20px; /* Add space below about section */
+    margin-bottom: 0; /* Remove bottom margin if desired */
 }
 #about-section h2 {
     text-align: center; /* Keep heading centered */
@@ -207,7 +207,7 @@ section h2 {
 }
 #about-section ul {
     list-style: disc; /* Use bullets */
-    padding-left: 20px; /* Indent list items */
+    padding-left: 40px; /* Indent list items more in full width */
     margin-bottom: 10px; /* Space below list */
     text-align: left; /* Ensure text within list is left-aligned */
 }
@@ -215,18 +215,19 @@ section h2 {
     margin-bottom: 8px; /* Space between list items */
 }
 
-/* Optional Divider between sections in right column */
+/* Optional Divider between sections */
 hr.section-divider {
     border: 0;
     height: 1px;
     background-color: #ddd;
-    margin: 30px 0; /* Use 0 for auto centering */
-    width: 100%; /* Make divider full width of column */
+    margin: 30px auto; /* Center divider and add space */
+    width: 80%; /* Make divider slightly narrower */
 }
 
-/* Styles for Medium list within the right column */
+/* Styles for Medium list (now full width) */
 #medium-section {
-     margin-bottom: 20px; /* Add space below medium section */
+     margin-bottom: 0; /* Remove bottom margin if desired */
+     text-align: center; /* <<< ADDED: Center the whole section */
 }
 #medium-section h2 {
      text-align: center; /* Keep heading centered */
@@ -235,7 +236,9 @@ hr.section-divider {
 #medium-section ul {
     list-style: disc; /* Use bullets */
     padding-left: 20px; /* Indent list items */
-    text-align: left; /* Ensure text within list is left-aligned */
+    text-align: left; /* Keep text left-aligned */
+    display: inline-block; /* <<< ADDED: Allow centering of the list block */
+    margin-top: 10px; /* Add space below heading */
 }
 #medium-section li {
     margin-bottom: 10px; /* Space between list items */
@@ -248,14 +251,20 @@ hr.section-divider {
     text-decoration: underline;
 }
 
-/* Styles for GD Animation Section */
+/* Styles for GD Animation Section (Right Column) */
 #gd-animation-section {
     text-align: center; /* Center heading and image block */
     margin-bottom: 20px; /* Add space below animation section */
 }
+#gd-animation-section h2 { /* Style the new H2 */
+    text-align: center;
+    margin-bottom: 5px; /* Less space below main heading */
+}
 #gd-animation-section h3 {
-    margin-bottom: 15px; /* Space below heading */
-    text-align: center; /* Ensure heading is centered */
+    margin-bottom: 15px; /* Space below subheading */
+    text-align: center; /* Ensure subheading is centered */
+    font-weight: normal; /* Make subheading less prominent */
+    font-size: 1.1em;
 }
 .gd-animation-gif {
     max-width: 100%; /* Ensure image doesn't overflow column */
@@ -276,10 +285,9 @@ hr.section-divider {
 @media (max-width: 768px) {
     /* Keep header content centered when stacked */
     .header-container {
-        /* flex-direction: column; */ /* Not using flex */
+        /* flex-direction: column; */ /* Not using flex ~
         text-align: center; /* Center items when stacked */
     }
-    /* .header-contact { ... } */ /* Removed */
 
     /* Stack two-column layout */
     .two-column-layout {
@@ -294,9 +302,9 @@ hr.section-divider {
      .column-right {
         /* text-align: center; */ /* Allow text alignment to be handled by inner elements */
     }
-    /* Ensure lists themselves are not centered as blocks */
+    /* Ensure lists themselves ARE centered as blocks on mobile */
      #about-section ul, #medium-section ul {
-        /* display: inline-block; */ /* Remove this to prevent centering */
+        display: inline-block; /* Allow centering */
         text-align: left; /* Keep text left-aligned */
     }
      /* Center headings specifically if needed */
