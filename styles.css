@@ -240,7 +240,7 @@ hr.section-divider {
     display: inline-block; /* <<< ADDED: Allow centering of the list block */
     margin-top: 10px; /* Add space below heading */
 }
-#medium-section li {
+#medium-section li {~
     margin-bottom: 10px; /* Space between list items */
 }
 #medium-section a {
